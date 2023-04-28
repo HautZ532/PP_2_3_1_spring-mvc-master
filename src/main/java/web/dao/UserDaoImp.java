@@ -9,15 +9,15 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-@Transactional(readOnly = true)
+@Transactional
 public class UserDaoImp implements UserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
-    @Transactional
     public void saveUser(User user) {
         entityManager.persist(user);
+        entityManager.flush();
     }
 
     @Override
@@ -26,18 +26,20 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    public void removeUser(User user) {
-
+    public void removeUser(long id) {
+        entityManager.remove(getUser(id));
     }
 
     @Override
-    public void editUser(User user) {
-
+    public User editUser(User user) {
+        entityManager.merge(user);
+        entityManager.flush();
+        return user;
     }
 
     @Override
-    public void getUser(User user) {
-        entityManager.createQuery("from User where User.id = :id", User.class);
+    public User getUser(long id) {
+        return entityManager.find(User.class, id);
     }
 
 

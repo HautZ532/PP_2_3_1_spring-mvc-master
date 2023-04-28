@@ -7,9 +7,30 @@
 </head>
 <body>
 <div>
-    <th:block th:each="msg : ${messages}">
-        <h1 th:text="${msg}"></h1>
-    </th:block>
+    <form th:action="@{/addUser}">
+        <div class="center">
+<!--        <button type="submit" th:value="add">add</button>-->
+        <input type="submit" th:value="add"/>
+        </div>
+    </form>
+
+    <table th:border="1" align="center" cellpadding="5">
+        <tr>
+            <th>Name</th>
+            <th>LastName</th>
+            <th>eMail</th>
+            <th>actions</th>
+
+        </tr>
+        <tr th:each="lst : ${usersList}">
+            <td th:utext="${lst.getName()}">...</td>
+            <td th:utext="${lst.getLastName()}">...</td>
+            <td th:utext="${lst.getEmail()}">...</td>
+        </tr>
+    </table>
+<!--    <th:block th:each="msg : ${messages}">-->
+<!--        <h1 th:text="${msg}"></h1>-->
+<!--    </th:block>-->
 </div>
 </body>
 </html>
