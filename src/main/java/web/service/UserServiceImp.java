@@ -9,8 +9,7 @@ import java.util.List;
 
 @Component
 public class UserServiceImp implements UserService {
-    final
-    UserDao userDao;
+    private final UserDao userDao;
 
     public UserServiceImp(UserDao userDao) {
         this.userDao = userDao;
@@ -32,8 +31,8 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User editUser(User user) {
-        return userDao.editUser(user);
+    public void editUser(User user) {
+        userDao.editUser(user);
     }
 
     @Override

@@ -13,23 +13,24 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(name = "name")
     @NotEmpty(message = "Укажите имя")
     @Size(min = 2, max = 15)
     private String name;
 
-    @Column
+    @Column(name = "last_name")
     @NotEmpty(message = "Укажите фамилию")
     @Size(min = 2, max = 15)
     private String lastName;
 
-    @Column
+    @Column(name = "email")
     @NotEmpty(message = "Укажите почту")
     @Email(message = "Не верный формат почты")
     private String email;
 
     public User() {
     }
+
 
     public String getName() {
         return name;
