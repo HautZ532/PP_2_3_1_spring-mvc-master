@@ -20,12 +20,14 @@
             <td th:utext="${listUser.getLastName()}">...</td>
             <td th:utext="${listUser.getEmail()}">...</td>
             <td>
-                <form th:action="@{users/{id}/editUser(id=${listUser.getId()})}">
-                    <input type="submit" th:value="Редактировать"/>
+                <form th:method="GET" th:action="@{users/editUser}">
+                    <input type="hidden" th:name="id" th:value="${listUser.getId()}"/>
+                    <button>Редактировать</button>
                 </form>
                 <br>
-                <form th:method="DELETE" th:action="@{users/{id}/deleteUser(id=${listUser.getId()})}">
-                    <input type="submit" th:value="Удалить"/>
+                <form th:method="DELETE" th:action="@{users/deleteUser}">
+                    <input type="hidden" th:name="id" th:value="${listUser.getId()}"/>
+                    <button>Удалить</button>
                 </form>
         </td>
         </tr>

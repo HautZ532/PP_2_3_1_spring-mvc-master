@@ -6,7 +6,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
-import web.service.UserServiceImp;
 
 @Controller
 @RequestMapping("/users")
@@ -36,8 +35,8 @@ public class UsersController {
 		return "redirect:/users";
 	}
 
-	@GetMapping(value = "/{id}/editUser")
-	public String userEdit(@PathVariable("id") long id, Model model) {
+	@GetMapping(value = "/editUser")
+	public String userEdit(@RequestParam(value = "id") long id, Model model) {
 		model.addAttribute("user", userService.getUser(id));
 		return "userEdit";
 	}
@@ -48,8 +47,8 @@ public class UsersController {
 		return "redirect:/users";
 	}
 
-	@DeleteMapping(value = "/{id}/deleteUser")
-	public String removeUser(@PathVariable("id") long id) {
+	@DeleteMapping(value = "/deleteUser")
+	public String removeUser(@RequestParam("id") long id) {
 		userService.removeUser(id);
 		return "redirect:/users";
 	}
