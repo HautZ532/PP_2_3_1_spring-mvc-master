@@ -23,7 +23,7 @@ public class UsersController {
 		return "users";
 	}
 
-	@GetMapping(value = "/addUser")
+	@GetMapping("/addUser")
 	public String addUser(ModelMap model) {
 		model.addAttribute("user", new User());
 		return "saveUser";
@@ -35,7 +35,7 @@ public class UsersController {
 		return "redirect:/users";
 	}
 
-	@GetMapping(value = "/editUser")
+	@GetMapping("/editUser")
 	public String userEdit(@RequestParam(value = "id") long id, Model model) {
 		model.addAttribute("user", userService.getUser(id));
 		return "userEdit";
@@ -47,7 +47,7 @@ public class UsersController {
 		return "redirect:/users";
 	}
 
-	@DeleteMapping(value = "/deleteUser")
+	@DeleteMapping()
 	public String removeUser(@RequestParam("id") long id) {
 		userService.removeUser(id);
 		return "redirect:/users";
